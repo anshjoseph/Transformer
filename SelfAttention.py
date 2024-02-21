@@ -30,6 +30,10 @@ class SelfAttention(nn.Module):
         # keys shape: (N, keys_len, self.heads, self.head_dims)
         # energy shape: (N, heads, queries_len, keys_len)
 
+        values = self.values(values)
+        keys = self.keys(keys)
+        queries = self.queries(queries)
+
         if mask != None:
             energy = energy.masked_fill(mask == 0,float("-1e28"))
         """
